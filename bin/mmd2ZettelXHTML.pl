@@ -43,7 +43,8 @@ if ($count == 0) {
 
 	# process stdin
 	undef $/;
-	my $data .= <>;
+	my $data = "xhtmlxslt: xhtml-add-textmate-css.xslt\n";
+	$data .= <>;
 
 	MultiMarkdown::Support::ProcessMMD2XHTML($MMDPath, "", $data);
 
