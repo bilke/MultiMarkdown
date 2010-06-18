@@ -25,7 +25,7 @@
 	  <link rel="stylesheet" href="file:///Applications/TextMate.app/Contents/SharedSupport/Support/themes/bright/style.css" type="text/css" />
 	  <style type="text/css">
       <xsl:comment>
-        body {margin-top: -78px;}
+        body {margin-top: -78px; font-size: 110%; font-family: Deja Vu Serif; line-height:1.4em;)
       </xsl:comment>
       </style>
     <xsl:apply-templates select="@*|node()"/>
