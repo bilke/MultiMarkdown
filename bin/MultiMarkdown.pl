@@ -170,7 +170,7 @@ unless ($@) {
 		my $plugin = new MT::Plugin({
 			name => "MultiMarkdown",
 			description => "Based on the original Markdown",
-			doc_link => 'http://fletcherpenney.net/multimarkdown/'
+			doc_link => 'http://fletcherpenney.net/MultiMarkdown/'
 		});
 		MT->add_plugin( $plugin );
 	}
@@ -748,6 +748,23 @@ sub _DoAnchors {
 			}
 			$result .= _DoAttributes($label);
 			$result .= ">$link_text</a>";
+		} elsif ($link_id =~ /^\§/) {
+			#
+			# ZETTELKASTEN Link Processing
+			#
+			$link_id=~ s/\§//g;
+			# my $filename = `find_by_id.sh $link_id`;
+			my $loc = $ENV{"ZETTELKASTEN"};
+			my $filename = `ls -C $loc | grep -o --colour=never "^${link_id}_.*"`;
+			$filename =~ s/\n|\r//sg;
+			$filename =~ s/ /%20/g;
+			$filename =~ s/=/%3D/g;
+			$filename =~ s/\+/%2B/g;
+			# $filename =~ s/\.md/\.html/;
+			my $url = "txmt://open?url=file://". $loc . $filename; # Zettelkasten Link
+			$result = "<a href=\"$url\"";
+			$result .= ">$link_text</a>";
+
 		} else {
 			$result = $whole_match;
 		}
