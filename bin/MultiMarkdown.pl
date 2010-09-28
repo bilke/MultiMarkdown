@@ -754,10 +754,7 @@ sub _DoAnchors {
 			#
 			$link_id=~ s/\§//g;
 			# my $filename = `find_by_id.sh $link_id`;
-			my $loc = $ENV{"ZETTELKASTEN"};
-			if ($loc eq "") { # TODO hardcoded :/
-				$loc = "/Users/ct/Archiv/"
-			}
+			my $loc = $ENV{"ZETTELKASTEN"} || "/Users/ct/Archiv/";
 			my $filename = `ls -C $loc | grep -o --colour=never "^${link_id}_.*"`;
 			$filename =~ s/\n|\r//sg;
 			$filename =~ s/ /%20/g;
