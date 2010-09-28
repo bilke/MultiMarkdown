@@ -753,8 +753,7 @@ sub _DoAnchors {
 			# ZETTELKASTEN Link Processing
 			#
 			$link_id=~ s/\§//g;
-			# my $filename = `find_by_id.sh $link_id`;
-			my $loc = $ENV{"ZETTELKASTEN"} || "/Users/ct/Archiv/";
+			my $loc = $ENV{"ZETTELKASTEN"} || expand_tilde("~/Archiv/");
 			my $filename = `ls -C $loc | grep -o --colour=never "^${link_id}_.*"`;
 			$filename =~ s/\n|\r//sg;
 			$filename =~ s/ /%20/g;
@@ -868,6 +867,21 @@ sub _DoAnchors {
 	return $text;
 }
 
+sub expand_tilde {
+  my $filename = shift;
+  $filename =~ s{
+      ^ ~             # find a leading tilde
+      (               # save this in $1
+          [^/]        # a non-slash character
+                *     # repeated 0 or more times (0 means me)
+      )
+    }{
+      $1
+          ? (getpwnam($1))[7]
+          : ( $ENV{HOME} || $ENV{LOGDIR} )
+    }ex;
+  return $filename;
+}
 
 sub _DoImages {
 #
