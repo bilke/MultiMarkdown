@@ -43,8 +43,7 @@ if ($count == 0) {
 
 	# process stdin
 	undef $/;
-	my $data = "xhtmlxslt: xhtml-add-textmate-css.xslt\n";
-	$data .= "xhtmlxslt: xhtml-toc.xslt\n";
+	my $data = "css: file://$MMDPath/base.css\n";
 	$data .= <>;
 
 	MultiMarkdown::Support::ProcessMMD2XHTML($MMDPath, "", $data);
@@ -63,8 +62,7 @@ if ($count == 0) {
 			my $filename = $_;
 
 			# add some styling automatically to each Zettel
-			my $data = "xhtmlxslt: xhtml-add-textmate-css.xslt\n";
-			$data .= "xhtmlxslt: xhtml-toc.xslt\n";
+			my $data = "css: file://$MMDPath/base.css\n";
 			
 			# Read input and process
 			open(INPUT, "<$filename");
