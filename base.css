@@ -54,7 +54,7 @@ body {
  */
 
 body, input, button, textarea, select, h1, h2, h3, h4, h5, h6 {
-  font-family: "Bitstream Vera Serif", Georgia, "DejaVu Serif", serif;
+  font-family: Georgia, "DejaVu Serif", serif;
   letter-spacing: .05em;
 }
 pre, tt, code, kbd, samp, var {
@@ -207,7 +207,7 @@ h1, h2, h3, h4, h5, h6, p, pre, ul, ol, dl, fieldset, address {padding:0 30px;}
 
 /* this is to reset the left/right gaps (created by the previous and next rules) on nested elements
  */
-dd p, dd pre, dd ul, dd ol, dd dl, li p, li pre, li ul, li ol, li dl, fieldset p, fieldset ul, fieldset ol {
+dd p, dd pre, dd ul, dd ol, dd dl, li p, li pre, li ul, li ol, li dl, fieldset p, fieldset ul, fieldset ol, blockquote p {
   padding-right: 0;
   padding-left: 0;
 }
@@ -227,6 +227,11 @@ dd {
   padding-left: 20px;
   margin-top: .5em;
 }
+
+/* blockquote must be indented with margin to put the border visually on a line with all other indentations.
+ * the sum total of border and padding is, again, 1.618em -- how everything else is indented, too.
+ */
+blockquote { margin-left: 30px; border-left: 0.809em solid #ddd; padding-left: 0.809em;}
 
 /* we cannot use padding on a table to create left and right gaps (as we do with the elements above), instead we use margin 
  */ 
